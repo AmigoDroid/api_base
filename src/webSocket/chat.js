@@ -4,10 +4,10 @@ export default function registerChatEvents(io, socket) {
     console.log("Mensagem recebida:", data);
 
     // Broadcast para todos
-    io.emit("chat:message", {
-      id: socket.id,
-      ...data
-    });
+  socket.on('send_message', (data) => {
+    // Broadcast para todos (troca conforme regra de envio por destinatário)
+    io.emit('receive_message', data);
   });
+})
 
 }
